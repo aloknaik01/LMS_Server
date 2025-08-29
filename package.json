@@ -9,7 +9,7 @@
     "dev": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Alok kumar Naik <aloknaik016261@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.1.10"
