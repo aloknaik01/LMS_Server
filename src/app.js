@@ -24,7 +24,18 @@ app.use("/", (req, res) => {
   });
 });
 
+
+
 //db-connection
 connectDB();
+
+// Global Error Handler
+app.use((err, req, res, next) => {
+  console.log(err.stack);
+  res.status(500).json({
+    success: false,
+    message: "Something went wrong",
+  });
+});
 
 module.exports = app;
