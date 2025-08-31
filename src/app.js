@@ -1,8 +1,8 @@
-const cors = require("cors");
 const express = require("express");
+const cors = require("cors");
 const connectDB = require("./db/db");
 const conf = require("./config/config");
-
+const authRoutes = require("./auth/auth.routes");
 const app = express();
 
 app.use(
@@ -17,14 +17,15 @@ app.use(express.urlencoded({ extended: true }));
 
 //ROUTES
 //Health check route
-app.use("/", (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: "LMS Backend API is running",
-  });
-});
+// app.use("/", (req, res) => {
+//   res.status(200).json({
+//     success: true,
+//     message: "LMS Backend API is running",
+//   });
+// });
 
-
+//routes-configuration
+app.use("/auth", authRoutes);
 
 //db-connection
 connectDB();
