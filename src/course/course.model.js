@@ -1,5 +1,12 @@
 const mongoose = require("mongoose");
 
+const LectureSchema = new mongoose.Schema({
+  title: String,
+  videoUrl: String,
+  public_Id: String,
+  freePreview: Boolean,
+});
+
 const courseSchema = new mongoose.Schema({
   instructorId: String,
   instructorName: String,
@@ -23,3 +30,5 @@ const courseSchema = new mongoose.Schema({
   ],
   curriculum: [LectureSchema],
 });
+
+module.exports = mongoose.model("Course", courseSchema);
