@@ -3,6 +3,8 @@ const cors = require("cors");
 const connectDB = require("./db/db");
 const conf = require("./config/config");
 const authRoutes = require("./auth/auth.routes");
+const instructorCourseRoute = require("./course/course.routes");
+
 const app = express();
 
 app.use(
@@ -26,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //routes-configuration
 app.use("/auth", authRoutes);
+app.use("/instructor/course", instructorCourseRoute);
 
 //db-connection
 connectDB();
