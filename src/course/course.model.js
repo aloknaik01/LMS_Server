@@ -22,4 +22,5 @@ const courseSchema = new mongoose.Schema({
     },
   ],
   curriculum: [LectureSchema],
+  isPublished: Boolean,
 });
