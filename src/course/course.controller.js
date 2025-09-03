@@ -24,8 +24,14 @@ const addNewCourse = async (req, res) => {
 // get All Courses api
 const getAllCourses = async (req, res) => {
   try {
+    const coursesList = await Course.find();
+    res.status(201).json({
+      sucess: true,
+      message: "Courses fetched successfully",
+      data: coursesList,
+    });
   } catch (error) {
-    return res.status(500).json({
+    res.status(500).json({
       sucess: false,
       message: "some error occured!",
     });
@@ -33,8 +39,22 @@ const getAllCourses = async (req, res) => {
 };
 const getCourseDetails = async (req, res) => {
   try {
+    const id = req.params;
+    const courseDetail = await Course.findByid(id);
+    if (!coursesList) {
+      return res.status(404).json({
+        sucess: false,
+        message: "course not found!",
+      });
+    }
+
+    res.status(200).json({
+      sucess: true,
+      message: "Course Detail fetched Successfully.",
+      data: courseDetail,
+    });
   } catch (error) {
-    return res.status(500).json({
+    res.status(500).json({
       sucess: false,
       message: "some error occured!",
     });
@@ -42,8 +62,29 @@ const getCourseDetails = async (req, res) => {
 };
 const updateCourseByid = async (req, res) => {
   try {
+    const id = req.params;
+    const updatedCourseData = req.body;
+
+    const updatedCourse = await Course.findByidAndUpdate(
+      id,
+      updatedCourseData,
+      { new: true }
+    );
+
+    if (!updatedCourse) {
+      return res.status(404).json({
+        sucess: false,
+        message: "Course Not Found!",
+      });
+    }
+
+    res.status(200).json({
+      sucess: true,
+      message: "course updated successfully",
+      data: updatedCourse,
+    });
   } catch (error) {
-    return res.status(500).json({
+    res.status(500).json({
       sucess: false,
       message: "some error occured!",
     });
